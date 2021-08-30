@@ -29,16 +29,22 @@ const CircleButton = styled.button`
   }
 `;
 
+const ModButton = styled(CircleButton)`
+  bottom:10px;
+  right: 120px;
+  background-color: #FF0000; 
+`
+
 const AddButton = styled(CircleButton)`
   bottom: 10px;
   right: 65px;
-  background-color: #28adfa;
+  background-color: #FFE400;
 `;
 
 const DelButton = styled(CircleButton)`
   bottom: 10px;
   right: 10px;
-  background-color: #c96e32;
+  background-color: #35B62C;
 `;
 
 const MainBox = () => {
@@ -60,6 +66,11 @@ const MainBox = () => {
     setIsEdit(true);
   };
 
+  const handleMod = () => {
+    setEditedContact({...selectedContact, age: String(selectedContact?.age)})
+    setIsEdit(true);
+  }
+
   return (
     <Box>
       {isEdit ? (
@@ -68,6 +79,8 @@ const MainBox = () => {
         <>
           <LeftBox />
           <RightBox />
+          
+          <ModButton disabled={!selectedContact} onClick={handleMod}>U</ModButton>
           <AddButton onClick={handleAdd}>+</AddButton>
           <DelButton disabled={!selectedContact} onClick={handleDelete}>
             -

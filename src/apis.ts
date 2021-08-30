@@ -1,3 +1,4 @@
+import { join } from 'path';
 import { EditContact } from './types';
 
 // const apiBaseUrl = 'https://jammanbo-contact-server.herokuapp.com/contacts';
@@ -26,3 +27,14 @@ export const create = async (editContact: EditContact) => {
   });
   return result;
 };
+
+export const update = async (editContact: EditContact) => {
+  const result = await fetch(`${apiBaseUrl}/${editContact.id}`, {
+    method: 'PUT',
+    body: JSON.stringify({...editContact, age: Number(editContact.age) }),
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+  return result;
+}
